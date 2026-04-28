@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOCKA 2026 - Isi</title>
+
+<style>
+:root {
+    --bg-main: #f1eef8;
+    --accent: #cffa3c;
+    --soft-purple: #cac8f9;
+    --dark-purple: #402297;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+    overflow: hidden;
+   background: var(--bg-main);
+    color: var(--dark-purple);
+    font-family: Helvetica, Arial, sans-serif;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+body.show {
+    opacity: 1;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; /* 🔥 diperkecil */
+    background: var(--dark-purple);
+    display: flex;
+    justify-content: center; /* 🔥 biar logo center */
+    align-items: center;
+    z-index: 999;
+    border-bottom: 3px solid var(--accent);
+}
+
+.navbar img {
+    width: 240px; /* 🔥 dibesarin lagi */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* 🔥 naik dikit biar pas */
+    filter: drop-shadow(0 0 12px #a855f7);
+}
+
+/* SLIDER */
+.slider {
+    display: flex;
+    width: 700vw;
+    height: 100vh;
+    transition: transform 0.5s ease;
+}
+
+.img-slider {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.img-slider img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.img-slider img.active {
+    opacity: 1;
+}
+
+.slide {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 80px;
+}
+
+/* BOX */
+.box {
+    background: white;
+    border: none;
+    color: var(--dark-purple);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(64,34,151,0.15);
+    max-width: 700px;   /* 🔥 INI KUNCINYA */
+    width: 90%;         /* 🔥 biar responsive */
+}
+
+/* TEXT */
+h2 {
+    margin-bottom: 15px;
+    border-left: 5px solid var(--accent);
+    padding-left: 10px;
+}
+
+.box p {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.info {
+    max-width: 400px; /* 🔥 lebih kecil dari default */
+    text-align: center;
+    padding: 25px;
+    border-left: 5px solid var(--accent);
+}
+
+.info p {
+    font-size: 14px;
+}
+
+.about {
+    max-width: 800px;
+    line-height: 1.8;
+}
+
+.about p {
+    margin-bottom: 12px;
+}
+
+.about p:first-of-type {
+    font-size: 16px;
+}
+
+.thankyou {
+    max-width: 380px; /* 🔥 lebih kecil & proporsional */
+    width: 90%;
+    text-align: center;
+    padding: 40px 25px;
+    box-shadow: 0 0 25px rgba(64,34,151,0.2);
+    transform: scale(0.95);
+    animation: popIn 0.5s ease forwards;
+}
+
+.thankyou h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.thankyou .back-btn {
+    margin-top: 15px;
+}
+
+.highlight {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+/* TIMELINE */
+.timeline {
+    display: flex;
+    gap: 25px;
+
+    overflow-x: auto;   /* 🔥 wajib */
+    overflow-y: hidden;
+
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+    justify-content: flex-start;
+}
+.timeline::-webkit-scrollbar {
+    height: 6px;
+}
+
+.timeline::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+.timeline-box {
+    max-width: 1000px;
+}
+
+/* CARD STEP */
+.step {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 260px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
+    border-top: 4px solid var(--accent);
+    flex-shrink: 0;
+}
+
+.step:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 15px var(--soft-purple);
+}
+
+/* GAMBAR */
+.step img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* TEXT */
+.step p {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+.circle {
+    width: 20px;
+    height: 20px;
+    background:  var(--accent);;
+    border-radius: 50%;
+    margin: auto;
+    box-shadow: 0 0 10px var(--accent);;
+}
+
+.line {
+    width: 80px;
+    height: 2px;
+    background: var(--accent);
+}
+
+.step p {
+    margin-top: 8px;
+}
+
+/* GALLERY */
+.gallery img {
+    width: 200px;
+    margin: 10px;
+    border-radius: 10px;
+    justify-content:center;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+.gallery {
+    display: flex;
+    justify-content: center; /* 🔥 bikin center */
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* CONTROL */
+.controls {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 20px;
+    border: none;
+    background: var(--accent);
+    color: #222;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* HOVER */
+button:hover:not(:disabled) {
+    background: #b8e62e;
+    transform: scale(1.1);
+}
+
+/* DISABLED STYLE (🔥 ini yang bikin beda) */
+button:disabled {
+    background: #ccc;
+    color: #888;
+    cursor: not-allowed;
+    transform: scale(0.9); /* 🔥 sedikit mengecil */
+    opacity: 0.6; /* 🔥 agak pudar */
+}
+
+/* HEADING */
+h1, h2, h3 {
+    font-family: 'Noto Serif', serif;
+}
+
+.back-btn {
+    margin-top: 20px;
+    padding: 10px 25px;
+    border-radius: 20px;
+    border: none;
+    background: #555;
+    color: white;
+    cursor: pointer;
+}
+
+.people {
+    display: flex;
+    gap: 40px; /* 🔥 jarak lebih jauh */
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+/* CARD */
+.person {
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+    width: 160px;
+}
+
+.person:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px var(--accent);
+}
+
+/* FOTO */
+.person img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+/* NAMA */
+.person p:first-of-type {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* DESKRIPSI */
+.person p:last-of-type {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+html {
+    background: var(--bg-main)
+}
+
+.slide.active .box {
+    animation: fadeUp 0.4s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    to {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        overflow-y: auto;
+    }
+
+    .navbar {
+        height: 60px;
+    }
+
+    .navbar img {
+        width: 140px;
+    }
+
+    .slider {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+    }
+
+    /* semua slide ditumpuk */
+    .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+
+        display: flex;
+        justify-content: center; /* 🔥 balik ke tengah */
+        align-items: center;     /* 🔥 tengah vertikal */
+
+        padding: 80px 15px 60px; /* 🔥 kasih napas atas & bawah */
+
+        opacity: 0;
+        transform: scale(0.95);
+        transition: 0.4s;
+    }
+
+    .slide.active {
+        opacity: 1;
+        transform: scale(1);
+        z-index: 2;
+    }
+
+    .box {
+        width: 100%;
+        max-width: 100%;
+        padding: 18px;
+        border-radius: 16px;
+        max-height: 80vh; /* 🔥 biar ga kepanjangan */
+        overflow-y: auto;
+        margin-bottom: 40px; 
+    }
+
+    .box::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .box::-webkit-scrollbar-thumb {
+        background: var(--accent);
+        border-radius: 10px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .box p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .info {
+        max-width: 100%;
+        text-align: left;
+    }
+
+    .about {
+        font-size: 13px;
+    }
+
+    .timeline {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 12px;
+        padding-bottom: 10px;
+        justify-content: flex-start;
+    }
+
+    .step {
+        min-width: 140px;
+        width: 140px;
+        height: 200px;
+        padding: 10px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* 🔥 biar isi dari atas */
+        align-items: center;
+    }
+
+    .step p {
+        font-size: 11px;
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .gallery img {
+        width: 100%;
+    }
+
+    .people {
+        gap: 15px;
+    }
+
+    .person {
+        width: 100px;
+        padding: 10px;
+    }
+
+    .person img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .person p:first-of-type {
+        font-size: 12px;
+    }
+
+    .person p:last-of-type {
+        font-size: 10px;
+    }
+
+    .thankyou {
+        max-width: 100%;
+        padding: 25px 15px;
+    }
+
+    .thankyou h1 {
+        font-size: 20px;
+    }
+
+    .controls {
+        position: fixed;
+        bottom: 15px;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between; /* 🔥 kiri kanan */
+        padding: 0 20px;
+        z-index: 999;
+    }
+
+    button {
+        background: var(--dark-purple);
+        color: white;
+        padding: 10px 14px;
+        border-radius: 50%;
+        font-size: 14px;
+    }
+
+    .img-slider {
+        width: 100%;
+        height: 120px; /* 🔥 lebih tinggi dikit */
+        margin-bottom: 10px;
+    }
+
+    .img-slider img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+
+    .step p {
+        font-size: 11px;
+        margin-top: 5px;
+    }
+}
+
+.drive-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.drive-links {
+    display: flex;
+    gap: 20px;
+}
+
+.drive-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--dark-purple);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.drive-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+.or-text {
+    font-weight: bold;
+}
+
+.gallery-hint {
+    margin-top: 8px;
+    font-size: 12px;
+    opacity: 0.4;
+    letter-spacing: 1px;
+}
+
+</style>
+</head>
+
+<body>
+<!-- LOGO -->
+<div class="navbar">
+    <img src="logo vedu nss.png" alt="Logo">
+</div>
+<div class="slider" id="slider">
+
+<!-- 0 INFO -->
+<div class="slide">
+    <div class="box info">
+        <h2>Info Event</h2>
+        <p>Sabtu, 11 April 2026</p>
+        <p>09.30 – 19.30 WIB</p>
+        <p>NAKOA SOCIAL SPACE, MALANG</p>
+
+    </div>
+</div>
+
+<!-- 1 ABOUT MOCKA -->
+<div class="slide">
+    <div class="box about">
+        <h2>Apa itu MOCKA?</h2>
+
+        <p>
+            <span class="highlight">
+                MOCKA (Mocktail Mixology Competition Nakoa)
+            </span>
+            adalah panggung kreatif untuk meracik mocktail, di mana peserta dinilai dari
+            kreativitas, teknik, akurasi rasa, presentasi, dan storytelling.
+        </p>
+
+        <p>
+            Menggunakan bahan dasar seperti sirup, susu, dan bubuk minuman,
+            peserta diberi ruang untuk menghadirkan kreasi yang inovatif,
+            sehat, dan sesuai tren minuman modern.
+        </p>
+
+        <p>
+            Lebih dari sekadar kompetisi, MOCKA menggabungkan unsur showcase
+            dan hiburan, menjadi ruang kolaborasi bagi pelajar, mahasiswa,
+            komunitas, dan praktisi F&B.
+        </p>
+
+        <p>
+            Sejalan dengan tren global, minuman non-alkohol terus mengalami
+            peningkatan minat, khususnya di kalangan Gen Z dan milenial.
+            Hal ini menjadikan MOCKA sebagai platform yang relevan untuk
+            eksplorasi kreativitas sekaligus eksposur brand.
+        </p>
+
+    </div>
+</div>
+<!-- 2 KEGIATAN -->
+<div class="slide">
+    <div class="box timeline-box">
+        <h2>Jalannya Kegiatan</h2>
+
+        <div class="timeline">
+
+    <div class="step">
+    <div class="img-slider">
+        <img src="registrasi2.jpg">
+    </div> 
+    <p>Registrasi</p>
+</div>
+
+    <div class="step">
+    <div class="img-slider">
+        <img src="babak1foto1.jpg">
+        <img src="babak1foto2.jpg">
+        <img src="babak1foto3.jpg">
+    </div>
+    <p>Babak 1</p>
+</div>
+
+    <div class="step">
+    <div class="img-slider">
+        <img src="babak2foto1.jpg">
+        <img src="babak2foto2.jpg">
+        <img src="babak2foto3.jpg">
+    </div>
+    <p>Babak 2</p>
+</div>
+
+    <div class="step">
+    <div class="img-slider">
+        <img src="babak3foto2.jpg">
+        <img src="babak3foto1.jpg">
+        <img src="5.jpg">
+    </div>
+        <p>Babak 3 - Final</p>
+    </div>
+
+   <div class="step">
+    <div class="img-slider">
+        <img src="pengumuman1.jpg">
+    </div>
+        <p>Pengumuman Pemenang</p>
+    </div>
+
+   <div class="step">
+    <div class="img-slider">
+        <img src="sesifoto1.jpg">
+        <img src="sesifoto2.jpg">
+    </div>
+        <p>Sesi Foto</p>
+    </div>
+
+    </div>
+</div>
+</div>
+
+<!-- 3 GALLERY -->
+<div class="slide">
+    <div class="box">
+        <h2>Gallery</h2>
+      <div class="drive-wrapper">
+
+    <div class="drive-links">
+        <a href="https://drive.google.com/drive/folders/1RskjYdJsO534rW_PKevvtkIwlhSHGKQi?usp=sharing" target="_blank" class="drive-item">
+            <span class="icon">📁</span>
+        </a>
+
+        <a href="https://drive.google.com/drive/folders/1y6LUxSCCO_0dcMyRFHSRqywgHJ0kWmoW" target="_blank" class="drive-item">
+            <span class="icon">📸</span>
+        </a>
+    </div>
+
+    <p class="gallery-hint">^ CLICK HERE ^</p>
+</div>
+</div>
+</div>
+
+<div class="slide">
+    <div class="box">
+        <h2>TOP 3</h2>
+
+        <div class="people">
+
+            <div class="person" onclick="openModal('Daffa Adrian','Judge Choice - TOP 2','https://via.placeholder.com/200')">
+                <div class="badge">🥇</div>
+                <img src="daffa.jpg">
+                <p>Daffa Adrian</p>
+                <p>Judge Choice</p>
+            </div>
+
+            <div class="person" onclick="openModal('Mario','Judge Choice - TOP 2','https://via.placeholder.com/200')">
+                <div class="badge">🥈</div>
+                <img src="mario.jpg">
+                <p>Mario</p>
+                <p>Judge Choice</p>
+            </div>
+
+            <div class="person" onclick="openModal('Ragil Rizki Satria','Customer Favorite','https://via.placeholder.com/200')">
+                <div class="badge">🥉</div>
+                <img src="ragil.jpg">
+                <p>Ragil Rizki Satria</p>
+                <p>Favorite Customer</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 5 JURI -->
+<div class="slide">
+    <div class="box">
+        <h2>Juri</h2>
+
+        <div class="people">
+
+            <div class="person">
+                <img src="jurikevin.jpg">
+                <p>Judge 1</p>
+                <p>Kevin Aprilio</p>
+            </div>
+
+            <div class="person">
+                <img src="juriyusuf.jpg">
+                <p>Head Judge</p>
+                <p>Yusuf Endriansyah</p>
+            </div>
+
+            <div class="person">
+                <img src="jurirony.jpg">
+                <p>Judge 2</p>
+                <p>A Rony Firmansyah</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 6 THANK YOU -->
+<div class="slide">
+    <div class="box thankyou">
+        <h1>Thank You</h1>
+         <button class="back-btn"
+        onclick="goHome()">Home</button>
+    </div>
+</div>
+
+</div>
+
+<!-- CONTROL -->
+<div class="controls">
+    <button id="prevBtn" onclick="prev()">⬅</button>
+    <button id="nextBtn" onclick="next()">➡</button>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    let index = 0;
+    const slides = document.querySelectorAll(".slide");
+    const total = slides.length;
+
+    function update() {
+        const isMobile = window.innerWidth <= 600;
+
+        if (isMobile) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove("active");
+                if (i === index) {
+                    slide.classList.add("active");
+                }
+            });
+        } else {
+            document.getElementById("slider").style.transform =
+                "translateX(-" + index * 100 + "vw)";
+        }
+
+        document.getElementById("prevBtn").disabled = index === 0;
+        document.getElementById("nextBtn").disabled = index === total - 1;
+    }
+
+    function next() {
+        if (index < total - 1) {
+            index++;
+            update();
+        }
+    }
+
+    function prev() {
+        if (index > 0) {
+            index--;
+            update();
+        }
+    }
+
+    // 🔥 biar tombol bisa dipakai dari HTML
+    window.next = next;
+    window.prev = prev;
+
+    /* SWIPE */
+    let startX = 0;
+
+    document.addEventListener("touchstart", e => {
+        startX = e.touches[0].clientX;
+    });
+
+    document.addEventListener("touchend", e => {
+        let endX = e.changedTouches[0].clientX;
+        if (startX > endX + 50) next();
+        if (startX < endX - 50) prev();
+    });
+
+    /* LOAD */
+    window.addEventListener("load", () => {
+        document.body.classList.add("show");
+        update();
+    });
+
+    /* GO HOME */
+    window.goHome = function() {
+        document.body.classList.remove("show");
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 500);
+    };
+
+    /* IMG SLIDER */
+    const sliders = document.querySelectorAll(".img-slider");
+
+    sliders.forEach(slider => {
+        const images = slider.querySelectorAll("img");
+        let i = 0;
+
+        if (images.length > 0) {
+            images[0].classList.add("active");
+
+            setInterval(() => {
+                images[i].classList.remove("active");
+                i = (i + 1) % images.length;
+                images[i].classList.add("active");
+            }, 2000);
+        }
+    });
+
+    /* DRAG TIMELINE */
+    const timeline = document.querySelector('.timeline');
+
+    if (timeline) {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        timeline.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - timeline.offsetLeft;
+            scrollLeft = timeline.scrollLeft;
+        });
+
+        timeline.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+
+        timeline.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+
+        timeline.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - timeline.offsetLeft;
+            const walk = (x - startX) * 2;
+            timeline.scrollLeft = scrollLeft - walk;
+        });
+    }
+
+});
+</script>
+</body>
+</html>

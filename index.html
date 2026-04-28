@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOCKA 2026</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: radial-gradient(circle at top, #2b0057, #0d001a);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: var(--accent);
+    filter: blur(120px);
+    opacity: 0.15;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+body {
+    opacity: 1;
+}
+
+/* LOGO TENGAH ATAS */
+.logo {
+    position: absolute;
+    top: -20%;              /* 🔥 atur naik-turun di sini */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo img {
+    width: 240px;        /* 🔥 ukuran logo besar */
+    height: auto;
+    filter: drop-shadow(0 0 12px #a855f7);
+}
+
+/* TITLE */
+h1 {
+    font-size: 80px;
+    letter-spacing: 6px;
+    text-shadow: 0 0 25px #a855f7;
+    position: relative;
+}
+
+h1::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 3px;
+    background: #cffa3c;
+    margin: 15px auto 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #cffa3c;
+}
+
+/* SUBTITLE */
+.subtitle {
+    margin-top: 15px;
+    font-size: 20px;
+    opacity: 0.85;
+     border-bottom: 2px solid var(--accent);
+    padding-bottom: 5px;.subtitle {
+    color: #cffa3c; /* 🔥 accent dipake */
+}
+
+}
+
+/* BUTTON */
+.btn {
+    margin-top: 40px;
+    padding: 14px 35px;
+    border-radius: 30px;
+    border: none;
+    background: #a855f7;
+    color: white; /* 🔥 ini yang bikin tulisan keliatan */
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold; /* 🔥 biar lebih jelas */
+}
+
+.btn:hover {
+    background: #b8e62e;
+    box-shadow: 0 0 20px var(--accent);
+}
+
+/* ANIMASI KELUAR */
+.fade-out {
+    animation: fadeOut 0.8s ease forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 60px;
+    }
+
+    .logo img {
+        width: 200px;
+    }
+
+    .subtitle {
+        font-size: 18px;
+        text-align: center;
+        padding: 0 20px;
+    }
+}
+
+/* HP */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 40px;
+        letter-spacing: 3px;
+        text-align: center;
+    }
+
+    .logo {
+        top: -10%; /* 🔥 biar ga terlalu ke atas */
+    }
+
+    .logo img {
+        width: 150px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+        padding: 0 25px;
+        line-height: 1.4;
+    }
+
+    .btn {
+        padding: 12px 28px;
+        font-size: 14px;
+    }
+}
+
+body {
+    text-align: center;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGO -->
+<div class="logo">
+    <img src="logo vedu nss.png" alt="Logo">
+</div>
+
+<!-- JUDUL -->
+<h1>MOCKA 2026</h1>
+
+<!-- SUBTITLE -->
+<p class="subtitle">
+    Kompetisi Mixology Mocktail NAKOA - Session 1
+</p>
+
+<!-- BUTTON -->
+<button class="btn"onclick="masuk()">Masuk</button>
+<script>
+
+function masuk(){
+    document.body.classList.add("fade-out");
+
+    setTimeout(() => {
+        window.location.href = "isi.html";
+    }, 700); // delay biar animasi jalan dulu
+}
+
+window.addEventListener("load", () => {
+    document.body.classList.add("show");
+});
+
+function masuk(){
+    document.body.classList.remove("show"); // fade out
+    setTimeout(() => {
+        window.location.href = "isi.html";
+    }, 500); // tunggu animasi selesai
+}
+</script>
+
+</body>
+</html>
